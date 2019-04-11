@@ -2,8 +2,6 @@
  TODO list
 ===========
 
-- let me have ~git owned by root:root
-
 - gitosis-lint: check that the user account (e.g. ``git``) looks valid
 
 - guard against *.pub files named -foo.pub or foo;bar.pub
