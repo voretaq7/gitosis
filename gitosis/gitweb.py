@@ -25,9 +25,9 @@ To plug this into ``gitweb``, you have two choices.
    isolates the changes a bit more nicely. Recommended.
 """
 
-import os, urllib, logging
+import os, urllib.request, urllib.parse, urllib.error, logging
 
-from ConfigParser import NoSectionError, NoOptionError
+from configparser import NoSectionError, NoOptionError
 
 from gitosis import util
 
@@ -91,8 +91,8 @@ def generate_project_list_fp(config, fp):
         else:
             response.append(owner)
 
-        line = ' '.join([urllib.quote_plus(s) for s in response])
-        print >>fp, line
+        line = ' '.join([urllib.parse.quote_plus(s) for s in response])
+        print(line, file=fp)
 
 def generate_project_list(config, path):
     """
@@ -106,7 +106,7 @@ def generate_project_list(config, path):
     """
     tmp = '%s.%d.tmp' % (path, os.getpid())
 
-    f = file(tmp, 'w')
+    f = open(tmp, 'w')
     try:
         generate_project_list_fp(config=config, fp=f)
     finally:
@@ -157,9 +157,9 @@ def set_descriptions(config):
             'description',
             )
         tmp = '%s.%d.tmp' % (path, os.getpid())
-        f = file(tmp, 'w')
+        f = open(tmp, 'w')
         try:
-            print >>f, description
+            print(description, file=f)
         finally:
             f.close()
         os.rename(tmp, path)
