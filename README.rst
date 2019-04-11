@@ -103,7 +103,7 @@ Security Recommendations
 For best security the ``git`` user should not have an interactive
 login password. You should also run a dedicated SSH daemon for gitosis
 on an alternate port, configured to only allow the ``git`` user.  
-Some recommended `sshd_config` settings:
+Some recommended `sshd_config` settings::
 
 	AllowUsers git
 	AllowAgentForwarding no
