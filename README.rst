@@ -105,13 +105,13 @@ login password. You should also run a dedicated SSH daemon for gitosis
 on an alternate port, configured to only allow the ``git`` user.  
 Some recommended `sshd_config` settings:
 
-        AllowUsers git
-        AllowAgentForwarding no
-        AllowTcpForwarding no
-        X11Fordwarding no
-        PermitRootLogin no
-        PasswordAuthentication no
-        ChallengeResponseAuthentication no
+	AllowUsers git
+	AllowAgentForwarding no
+	AllowTcpForwarding no
+	X11Fordwarding no
+	PermitRootLogin no
+	PasswordAuthentication no
+	ChallengeResponseAuthentication no
     
     
 Managing it
