@@ -24,7 +24,7 @@ more information.
 
 You can get ``gitosis`` via ``git`` by saying::
 
-    git clone https://github.com/tv42/gitosis.git
+    git clone https://github.com/voretaq7/gitosis.git
 
 And install it via::
 
@@ -40,8 +40,9 @@ First, we will create the user that will own the repositories. This is
 usually called ``git``, but any name will work, and you can have more
 than one per system if you really want to. The user does not need a
 password, but does need a valid shell (otherwise, SSH will refuse to
-work). Don't use an existing account unless you know what you're
-doing.
+work).  
+Create a dedicated service account. **DO NOT** use a normal user
+account.
 
 I usually store ``git`` repositories in the subtree
 ``/srv/example.com/git`` (replace ``example.com`` with your own
@@ -97,6 +98,22 @@ Once you push, ``gitosis`` will immediately make your changes take
 effect on the server.
 
 
+Security Recommendations
+===========
+For best security the ``git`` user should not have an interactive
+login password. You should also run a dedicated SSH daemon for gitosis
+on an alternate port, configured to only allow the ``git`` user.  
+Some recommended `sshd_config` settings:
+
+        AllowUsers git
+        AllowAgentForwarding no
+        AllowTcpForwarding no
+        X11Fordwarding no
+        PermitRootLogin no
+        PasswordAuthentication no
+        ChallengeResponseAuthentication no
+    
+    
 Managing it
 ===========
 
@@ -188,14 +205,3 @@ And a simple ``gitweb.conf`` file:
 
 Note that this short snippet is not a substitute for reading and
 understanding the relevant documentation.
-
-
-
-Contact
-=======
-
-You can email the author at ``tv@eagain.net``, or hop on
-``irc.freenode.net`` channel ``#git`` and hope for the best.
-
-There will be more, keep an eye on http://eagain.net/ and/or the git
-mailing list.
